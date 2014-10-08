@@ -25,6 +25,7 @@ exports.handleGuess = function(res, cb) {
             });
         }], function(err, result) {
             if (err) {
+                next(err);
                 console.log("Async guess error: ", err);
             } else {
                 if (_.strContains(result, letter)) {
@@ -35,6 +36,9 @@ exports.handleGuess = function(res, cb) {
             }
         });
 	}, function(err, results) {
+        if (err) {
+            cb(err);
+        }
 		var len = results.length;
 		var word = results[len-1];
 		cb(null, word);

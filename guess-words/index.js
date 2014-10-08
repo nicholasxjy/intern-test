@@ -13,11 +13,13 @@ myRequest.initGame().then(function(data) {
                     var giveWordRes = JSON.parse(data);
                     callback(null, giveWordRes);
                 }, function (err) {
+                    callback(err);
                     console.log("give word error: ", err);
                 });
             }, function (res, callback) {
                 guess.handleGuess(res, function(err, finalWord) {
                    if(err) {
+                       callback(err);
                        console.log("Error :", err);
                    } else {
                        callback(null, finalWord);
@@ -25,6 +27,7 @@ myRequest.initGame().then(function(data) {
                 });
             }], function (err, result) {
                 if (err) {
+                    next(err);
                     console.log("Error guess: ", err);
                 } else {
                     console.log("Final " + (n+1) + " word: " + result + "\n");
@@ -37,6 +40,7 @@ myRequest.initGame().then(function(data) {
                     var res = JSON.parse(data);
                     callback(null, res);
                 }, function(err) {
+                    callback(err);
                     console.log("Get results error: ", err);
                 });
             }], function(err, result) {
