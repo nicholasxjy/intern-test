@@ -96,7 +96,7 @@ exports.submitResults = function(data) {
 	var headers = {
 		"Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
 	};
-	request.post({url: url, formData: formData, headers: headers}, function(err, response, body) {
+	request.post({url: url, form: formData, headers: headers}, function(err, response, body) {
 		if (err) {
 			console.log("submit results Error: ", err);
 		} else {
